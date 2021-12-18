@@ -52,9 +52,7 @@ export default function Index() {
           />
         </section>
       </main>
-      <footer className="footer">
-        <Footer />
-      </footer>
+      <Footer />
     </>
   )
 }
