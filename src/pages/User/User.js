@@ -8,17 +8,7 @@ export default function User() {
   return (
     <>
       <Navigation />
-      <div>
-        <a class="main-nav-item" href="./user.html">
-          <i class="fa fa-user-circle"></i>
-          Tony
-        </a>
-        <a class="main-nav-item" href="./index.html">
-          <i class="fa fa-sign-out"></i>
-          Sign Out
-        </a>
-      </div>
-      <main className="main bg-dark">
+      <main className="main bg-dark bg-padding">
         <UserHeader userName="Tony Jarvis" />
         <h2 className="sr-only">Accounts</h2>
         <Account

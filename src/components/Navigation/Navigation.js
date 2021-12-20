@@ -18,6 +18,14 @@ export default function Navigation() {
           <i className="fa fa-user-circle"></i>
           Sign In
         </Link>
+        <Link className="main-nav-item" to="/user">
+          <i className="fa fa-user-circle"></i>
+          Tony
+        </Link>
+        <Link className="main-nav-item" to="/">
+          <i className="fa fa-sign-out"></i>
+          Sign Out
+        </Link>
       </div>
     </nav>
   )
