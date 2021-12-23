@@ -1,5 +1,10 @@
+import { useState } from 'react'
 import './SignInForm.css'
+
 export default function SignInForm() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
   return (
     <section className="sign-in-content">
       <i className="fa fa-user-circle sign-in-icon"></i>
@@ -7,11 +12,19 @@ export default function SignInForm() {
       <form>
         <div className="input-wrapper">
           <label htmlFor="username">Username</label>
-          <input type="text" id="username" />
+          <input
+            type="text"
+            id="username"
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
         <div className="input-wrapper">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" />
+          <input
+            type="password"
+            id="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
         <div className="input-remember">
           <input type="checkbox" id="remember-me" />
