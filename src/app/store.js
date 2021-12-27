@@ -1,12 +1,19 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
-import loginSlice from './Slices/loginSlice'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
+import { loginReducer } from './reducers/loginReducer'
 
-const rootReducer = combineReducers({
-  login: loginSlice,
+const reducer = combineReducers({
+  userLogin: loginReducer,
 })
 
+const initialState = {}
+
 // applyMiddleware(thunk) for async calls
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(
+  reducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(thunk))
+)
 
 export default store
