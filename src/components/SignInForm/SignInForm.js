@@ -1,29 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import './SignInForm.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../../app/actions/loginActions'
+import { login } from '../../app/actions/actions'
 import { useNavigate } from 'react-router'
 
 export default function SignInForm() {
+  const dispatch = useDispatch()
   let navigate = useNavigate()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const dispatch = useDispatch()
-
-  const userLogin = useSelector((state) => state.userLogin)
-  const { error, userInfo } = userLogin
-
-  useEffect(() => {
-    if (userInfo) {
-      navigate('/user')
-    }
-  }, [navigate, userInfo])
+  const { error } = useSelector((state) => state.userLogin)
+  const { token } = useSelector((state) => state.userLogin)
 
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(login(email, password))
   }
+
+  useEffect(() => {
+    if (token) {
+      navigate('/user')
+    }
+  }, [token, navigate])
 
   return (
     <section className="sign-in-content">
@@ -34,7 +34,6 @@ export default function SignInForm() {
           <label htmlFor="username">Username</label>
           <input
             type="text"
-            id="username"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -44,7 +43,6 @@ export default function SignInForm() {
           <label htmlFor="password">Password</label>
           <input
             type="password"
-            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -54,14 +52,13 @@ export default function SignInForm() {
           <input type="checkbox" id="remember-me" />
           <label htmlFor="remember-me">Remember me</label>
         </div>
-
         <button className="sign-in-button" type="submit" name="Login">
           Sign In
         </button>
         {error && (
           <div>
             <br />
-            Please check the login informations.
+            {error}
           </div>
         )}
       </form>

@@ -1,13 +1,20 @@
-import { USER_LOGIN_FAIL, USER_LOGIN_SUCCESS, USER_LOGOUT } from './types'
+export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS'
+export const USER_LOGIN_FAIL = 'USER_LOGIN_FAIL'
+export const USER_LOGOUT = 'USER_LOGOUT'
 
-export const loginReducer = (state = {}, action) => {
+const INITIAL_STATE = {
+  isLogged: false,
+  token: '',
+}
+
+export const loginReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case USER_LOGIN_SUCCESS:
-      return { userInfo: action.payload }
+      return { isLogged: true, token: action.payload.body.token }
     case USER_LOGIN_FAIL:
-      return { error: action.payload }
+      return { isLogged: false, token: null, error: action.payload }
     case USER_LOGOUT:
-      return {}
+      return { isLogged: false, token: null }
     default:
       return state
   }

@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import './Navigation.css'
-import { logout } from '../../app/actions/loginActions'
+import { logout } from '../../app/actions/actions'
 
 export default function Navigation() {
   let navigate = useNavigate()
   const dispatch = useDispatch()
-  const { userInfo } = useSelector((state) => state.userLogin)
+  const { token } = useSelector((state) => state.userLogin)
+  const { firstName } = useSelector((state) => state.userProfile)
 
   const logoutHandler = () => {
     dispatch(logout())
@@ -26,7 +27,7 @@ export default function Navigation() {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        {!userInfo?.status ? (
+        {!token ? (
           <Link className="main-nav-item" to="/login">
             <i className="fa fa-user-circle"></i>
             Sign In
@@ -34,15 +35,15 @@ export default function Navigation() {
         ) : (
           ''
         )}
-        {userInfo?.status ? (
+        {token ? (
           <Link className="main-nav-item" to="/user">
             <i className="fa fa-user-circle"></i>
-            {userInfo.body.firstName}
+            {firstName}
           </Link>
         ) : (
           ''
         )}
-        {userInfo?.status ? (
+        {token ? (
           <Link onClick={logoutHandler} className="main-nav-item" to="/">
             <i className="fa fa-sign-out"></i>
             Sign Out

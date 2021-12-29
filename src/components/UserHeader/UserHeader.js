@@ -1,27 +1,18 @@
 import './UserHeader.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { updateProfile } from '../../app/actions/userActions'
-import { useNavigate } from 'react-router'
+import { updateProfile } from '../../app/actions/actions'
 
 export default function UserHeader() {
-  const [firstname, setFirstname] = useState('')
-  const [lastname, setLastname] = useState('')
-
   const dispatch = useDispatch()
-  let navigate = useNavigate()
 
-  const { userInfo } = useSelector((state) => state.userLogin)
+  const { firstName } = useSelector((state) => state.userProfile)
+  const { lastName } = useSelector((state) => state.userProfile)
+  const { token } = useSelector((state) => state.userLogin)
+  const { success } = useSelector((state) => state.userLogin)
 
-  const userUpdate = useSelector((state) => state.userUpdate)
-  const { error, success } = userUpdate
-
-  console.log(userInfo.body.token)
-  console.log(userInfo.body.firstName)
-  useEffect(() => {
-    setFirstname(userInfo.body.firstName)
-    setLastname(userInfo.body.lastName)
-  }, [userInfo, navigate])
+  const [newFirstname, setNewFirstname] = useState()
+  const [newLastname, setNewLastname] = useState()
 
   const [editButton, setEditButton] = useState('')
 
@@ -32,10 +23,10 @@ export default function UserHeader() {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    dispatch(updateProfile({ firstname, lastname }))
-    // if (success) {
-    //   setEditButton((current) => !current)
-    // }
+    dispatch(updateProfile(token, newFirstname, newLastname))
+    if ({ success }) {
+      setEditButton((current) => !current)
+    }
   }
 
   return (
@@ -45,7 +36,7 @@ export default function UserHeader() {
           <h1>
             Welcome back
             <br />
-            {firstname + ' ' + lastname} !
+            {firstName + ' ' + lastName} !
           </h1>
           <button onClick={editNameButton} className="edit-button">
             Edit Name
@@ -58,13 +49,15 @@ export default function UserHeader() {
             <div className="editNameInputs">
               <input
                 type="text"
-                value={firstname}
-                onChange={(e) => setFirstname(e.target.value)}
+                placeholder={firstName}
+                onChange={(e) => setNewFirstname(e.target.value)}
+                required
               />
               <input
                 type="text"
-                value={lastname}
-                onChange={(e) => setLastname(e.target.value)}
+                placeholder={lastName}
+                onChange={(e) => setNewLastname(e.target.value)}
+                required
               />
             </div>
             <div className="editNameButtons">
@@ -75,18 +68,6 @@ export default function UserHeader() {
                 Cancel
               </button>
             </div>
-            {error && (
-              <div>
-                <br />
-                Error
-              </div>
-            )}
-            {success && (
-              <div>
-                <br />
-                Updated successfully.
-              </div>
-            )}
           </form>
         </div>
       )}

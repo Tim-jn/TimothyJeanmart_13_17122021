@@ -13,7 +13,7 @@ export default function User() {
     <>
       <Navigation />
       <main className="main bg-dark bg-padding">
-        <UserHeader userName="Tony Jarvis" />
+        <UserHeader />
         <h2 className="sr-only">Accounts</h2>
         <Account
           title="Argent Bank Checking (x8349)"
