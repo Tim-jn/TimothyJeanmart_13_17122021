@@ -9,7 +9,6 @@ import {
   USER_PROFILE_RESET,
   USER_PROFILE_UPDATE,
 } from '../reducers/userReducer'
-// import { USER_UPDATE_SUCCESS, USER_UPDATE_FAIL } from '../reducers/userReducer'
 import axios from 'axios'
 
 // Login action

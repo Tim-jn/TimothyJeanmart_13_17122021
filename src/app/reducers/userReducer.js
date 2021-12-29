@@ -29,21 +29,3 @@ export const userReducer = (state = INITIAL_STATE, action) => {
       return state
   }
 }
-
-// export const USER_UPDATE_SUCCESS = 'USER_UPDATE_SUCCESS'
-// export const USER_UPDATE_FAIL = 'USER_UPDATE_FAIL'
-
-// export const userUpdateReducer = (state = {}, action) => {
-//   switch (action.type) {
-//     case USER_UPDATE_SUCCESS:
-//       return {
-//         success: true,
-//         firstName: action.payload.body.firstName,
-//         lastName: action.payload.body.lastName,
-//       }
-//     case USER_UPDATE_FAIL:
-//       return { error: action.payload, success: false }
-//     default:
-//       return state
-//   }
-// }
