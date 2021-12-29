@@ -58,8 +58,12 @@ export default function SignInForm() {
         <button className="sign-in-button" type="submit" name="Login">
           Sign In
         </button>
-        <br />
-        {error && <div>Please check the login informations.</div>}
+        {error && (
+          <div>
+            <br />
+            Please check the login informations.
+          </div>
+        )}
       </form>
     </section>
   )

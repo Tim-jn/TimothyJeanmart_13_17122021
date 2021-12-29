@@ -5,6 +5,8 @@ import {
 } from '../reducers/types'
 import axios from 'axios'
 
+// Login action
+
 export const login = (email, password) => async (dispatch) => {
   try {
     const config = {
@@ -32,6 +34,8 @@ export const login = (email, password) => async (dispatch) => {
     })
   }
 }
+
+// Logout action
 
 export const logout = () => async (dispatch) => {
   localStorage.removeItem('userInfo')

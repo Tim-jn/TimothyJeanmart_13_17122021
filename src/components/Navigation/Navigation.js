@@ -8,15 +8,13 @@ import { logout } from '../../app/actions/loginActions'
 export default function Navigation() {
   let navigate = useNavigate()
   const dispatch = useDispatch()
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
-
-  console.log(userLogin)
+  const { userInfo } = useSelector((state) => state.userLogin)
 
   const logoutHandler = () => {
     dispatch(logout())
     navigate('/')
   }
+
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to="/">
@@ -28,7 +26,7 @@ export default function Navigation() {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        {!userLogin.userInfo?.body.token ? (
+        {!userInfo?.status ? (
           <Link className="main-nav-item" to="/login">
             <i className="fa fa-user-circle"></i>
             Sign In
@@ -36,15 +34,15 @@ export default function Navigation() {
         ) : (
           ''
         )}
-        {userLogin.userInfo?.body.token ? (
+        {userInfo?.status ? (
           <Link className="main-nav-item" to="/user">
             <i className="fa fa-user-circle"></i>
-            Tony
+            {userInfo.body.firstName}
           </Link>
         ) : (
           ''
         )}
-        {userLogin.userInfo?.body.token ? (
+        {userInfo?.status ? (
           <Link onClick={logoutHandler} className="main-nav-item" to="/">
             <i className="fa fa-sign-out"></i>
             Sign Out
