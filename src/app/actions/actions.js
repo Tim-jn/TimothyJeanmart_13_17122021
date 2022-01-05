@@ -69,6 +69,8 @@ export const userProfile = (token) => async (dispatch) => {
   }
 }
 
+// User's update profile
+
 export const updateProfile =
   (token, newFirstName, newLastName) => async (dispatch) => {
     try {

@@ -21,7 +21,7 @@ export default function SignInForm() {
 
   useEffect(() => {
     if (token) {
-      navigate('/user')
+      navigate('/profile')
     }
   }, [token, navigate])
 
