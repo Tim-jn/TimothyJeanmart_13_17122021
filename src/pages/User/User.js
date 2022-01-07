@@ -3,12 +3,25 @@ import Footer from '../../components/Footer/Footer'
 import Navigation from '../../components/Navigation/Navigation'
 import Account from '../../components/Account/Account'
 import UserHeader from '../../components/UserHeader/UserHeader'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router'
 
 // Styles
 import './User.css'
 
 export default function User() {
   document.title = "Argent Bank - User's Page"
+  let navigate = useNavigate()
+
+  const { token } = useSelector((state) => state.userLogin)
+ 
+  useEffect(() => {
+    if (!token) {
+      navigate('/')
+    }
+  }, [token, navigate])
+  
   return (
     <>
       <Navigation />

@@ -58,7 +58,7 @@ paths:
         '500':
           description: Internal Server Error
   /user/profile:
-    post:
+    get:
       security:
         - Bearer: []
       tags:
@@ -112,8 +112,34 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  /user/transactions:
-    post:
+  /user/accounts/{accountId}:
+    get:
+      tags:
+      - User Transactions
+      summary: User's Account
+      description: API for getting all accounts
+      parameters:
+      - in: header
+        name: Authorization
+        description: Attach Bearer JWT token
+        type: string
+        required: true
+      - in: path
+        name: accountId
+        description: User's account ID
+        type: integer
+        required: true
+      responses:
+        '200':
+          description: Transaction retrieved successully
+          schema:
+            $ref: '#/definitions/Transactions'
+        '400':
+          description: Bad request. User ID must be an integer and larger than 0.
+        '500':
+          description: Internal Server Error
+  /user/accounts/{accountId}/transactions:
+    get:
       tags:
       - User Transactions
       summary: Transactions
@@ -124,17 +150,22 @@ paths:
         description: Attach Bearer JWT token
         type: string
         required: true
+      - in: path
+        name: accountId
+        description: User's account ID
+        type: integer
+        required: true
       responses:
         '200':
           description: Transaction retrieved successully
           schema:
             $ref: '#/definitions/Transactions'
         '400':
-          description: Invalid Fields
+          description: Bad request. User ID must be an integer and larger than 0.
         '500':
           description: Internal Server Error
-  /user/transactions/{id}:
-    post:
+  /user/accounts/{accountId}/transactions/{transactionsId}:
+    get:
       tags:
       - User Transactions
       summary: Transaction details
@@ -146,7 +177,12 @@ paths:
         type: string
         required: true
       - in: path
-        name: id
+        name: accountId
+        description: User's account ID
+        type: integer
+        required: true
+      - in: path
+        name: transactionsId
         description: Transaction's ID
         required: true
         type: integer
@@ -156,10 +192,10 @@ paths:
           schema:
             $ref: '#/definitions/Transactions'
         '400':
-          description: Invalid Fields
+          description: Bad request. User ID/ transaction ID must be an integer and larger than 0.
         '500':
           description: Internal Server Error
-    put:
+    patch:
       tags:
       - User Transactions
       summary: Update an existing transaction
@@ -175,7 +211,12 @@ paths:
         type: string
         required: true
       - in: path
-        name: id
+        name: accountId
+        description: User's account ID
+        type: integer
+        required: true
+      - in: path
+        name: transactionsId
         description: Transaction's ID
         required: true
         type: integer
@@ -191,7 +232,7 @@ paths:
           schema:
             $ref: '#/definitions/Transactions'
         '400':
-          description: Invalid Fields
+          description: Bad request. User ID/ transaction ID must be an integer and larger than 0.
         '500':
           description: Internal Server Error
 securityDefinitions:
@@ -251,7 +292,7 @@ definitions:
   Transactions:
     type: object
     properties:
-      id:
+      transactionsId:
         type: integer
         format: int64
       date:
