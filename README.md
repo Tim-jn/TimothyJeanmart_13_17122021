@@ -1,72 +1,37 @@
-# Project #13 - Argent Bank API
+# Argent Bank
 
-This codebase contains the code needed to run the backend for Argent Bank.
+Un fichier Swagger décrivant les API proposées pour les transactions (à implémenter dans le futur) est disponible dans le projet ci-dessus.
 
-## Getting Started
+## [Installation](#Setup)
 
-### Prerequisites
+Ce projet nécéssite l'utilisation d'un back-end. 
+Une version live est disponible mais elle n'est pas reliée au backend (donc impossible de se connecter). 
+Vous pouvez suivre les étapes d'installation afin d'obtenir une version live locale.
 
-Argent Bank uses the following tech stack:
+## Intitulé du projet
+Utilisez une API pour un compte utilisateur bancaire avec React
 
-- [Node.js v12](https://nodejs.org/en/)
-- [MongoDB Community Server](https://www.mongodb.com/try/download/community)
+## [Live demo](https://timjn-argentbank.netlify.app/)
 
-Please make sure you have the right versions and download both packages. You can verify this by using the following commands in your terminal:
+## Languages utilisés 
+ - React (Redux)
 
-```bash
-# Check Node.js version
-node --version
+## Compétences évaluées
+- Implémenter un gestionnaire d'état dans une application React
+- Intéragir avec une API
+- Modéliser une API
+- S'authentifier à une API
 
-# Check Mongo version
-mongo --version
-```
+## Setup
 
-### Instructions
+This project was builded with Node v17.3.0 and VSCode as code editor.
 
-1. Fork this repo
-1. Clone the repo onto your computer
-1. Open a terminal window in the cloned project
-1. Run the following commands:
+It requires the use of a NodeJS backend : [ArgentBank backend](https://github.com/Tim-jn/TimothyJeanmart_13_17122021_Bank_API).
+Follow the backend readme for its installation.
 
-```bash
-# Install dependencies
-npm install
+To launch the project :
 
-# Start local dev server
-npm run dev:server
-
-# Populate database with two users
-npm run populate-db
-```
-
-Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
-
-## Populated Database Data
-
-Once you run the `populate-db` script, you should have two users in your database:
-
-### Tony Stark
-
-- First Name: `Tony`
-- Last Name: `Stark`
-- Email: `tony@stark.com`
-- Password: `password123`
-
-### Steve Rogers
-
-- First Name: `Steve`,
-- Last Name: `Rogers`,
-- Email: `steve@rogers.com`,
-- Password: `password456`
-
-## API Documentation
-
-To learn more about how the API works, once you have started your local environment, you can visit: http://localhost:3001/api-docs
-
-## Design Assets
-
-Static HTML and CSS has been created for most of the site and is located in: `/designs`.
-
-For some of the dynamic features, like toggling user editing, there is a mock-up for it in `/designs/wireframes/edit-user-name.png`.
-
-And for the API model that you will be proposing for transactitons, the wireframe can be found in `/designs/wireframes/transactions.png`.
+1. Download or clone the project
+2. Go to the project folder
+3. Install the dependencies with `yarn install`
+4. Run it with `yarn start`
